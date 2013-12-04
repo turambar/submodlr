@@ -1,0 +1,26 @@
+Problems for the form $\underset{X\subset V}{\operatorname{max }}\text{ } f(X)$ for any submodular function $f$ occurs in various applications. Problems of these kind are known to be NP-Hard. Feige and Mirrokni \cite{Feige07maximizingnon-monotone} showed that maximizing for non-negative submodular functions a random subset achieves at least 1/$4^{\text{th}}$ the optimal value and local search techniques achieve at least a 1/2. Though these problems are NP-Hard, a $(1 - 1/e)$ approximation can be obtained when maximizing a non-decreasing submodular function under matroid constraints.
+The solution to the arbritary matroid constraint was shown more recently by Vondrak et al \cite{Vondrak}. The initial result of an $(1 - 1/e)$ approximation was shown by Nemhauser  \cite{Nemhauser} in the 70s, but the result was only applicable to uniform matroid (cardinality) constraints. The solution to the uniform matroid contraint consists of a simple greedy algorithm that has implication in online learning and adaptive submodularity.
+\begin{itemize}
+ \item {\bf Lemma 3.1: Local minima for submodular function minimization} \\ Given a submodular function $\{f:2^V \rightarrow \Re \mid f(\emptyset) = 0\}$ and  $X \subset V$ such that $\forall k \in X$, $\text{ }f(X\setminus \{k\}) \leq f(X)$  and $\forall k \in V\setminus X, \text{ } f(X\cup \{k\}) \leq f(X)$ holds true.
+ \[ \text{Then, } \forall Y\subset X \text{ and } \forall Y\supset X \text{ , }f(Y) \leq f(X) \] 
+\end{itemize}
+\subsubsection{Greedy Algorithm for Monotone Submodular Function Maximization with Uniform Matroid Constraints}
+Maximization for arbitary constraints can be achieved using Vondrak's algorithm. In this document we'll focus on the greedy algorithm as it has implications in the online learning domain. {\bf Note:} Maximization can also be formulated using the base polyhedron given we have $f$ and it's lov$\acute{a}$sz extension $\hat{f}$. In this case maximization is equivalent to finding the maximum l1-norm point in the base polyhedron. See \cite{Bach} for more details.
+For monotone submodular maximization subject to uniform matroid constraints, we need to find a set $X^*\subseteq V$ such that
+\[
+ X^* = \underset{\|X\| \leq n}{\operatorname{argmax }}\text{ }f(X)
+\]
+
+where $n$ is the cardinality (uniform matroid) constraint. Though this problem is NP-hard we can get an approximate solution with an approximation of $(1-1/e)$ of the optimal solution.  The algorithm for obtaining this solution is shown in Algorithm \ref{alg:greedy}.
+\begin{algorithm}[htb]
+\caption{Greedy Algorithm}
+\label{alg:greedy}
+\begin{algorithmic}[1]
+\footnotesize
+\State {\bf Initialization}: Start with $X = \emptyset$
+\For{ i = 1 to n }
+  \State $y':= \underset{y}{\operatorname{argmax }}\text{ }f(X\cup {y}) $
+  \State $X := X \cup {y'}$
+\EndFor
+\end{algorithmic}
+\end{algorithm}
