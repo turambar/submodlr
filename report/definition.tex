@@ -1,6 +1,6 @@
 Formally we can define submodularity as the property of set functions $f:2^V \rightarrow \Re$, which assign each subset $S \subseteq V$ a value $f(S)$. Here $V$ is a finite set called the {\it ground set}. We also assume that $f(\emptyset) = 0$.\\
 
-{\bf \definition}: {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+ {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  f(X) + f(Y) \geq f(X \cup U) + f(X \cap Y) \text{  } \forall \text{  } X,Y \subseteq V
@@ -8,7 +8,7 @@ Formally we can define submodularity as the property of set functions $f:2^V \ri
 
 In the above definition the function $f$ lends itself to different forms in different application domains. For instance in a Machine Learning context $f$ could be a function that evaluates information of a given set, i.e entropy. Using this notion, we can easily introduce the property of diminishing returns by using an equivalent definition for submodularity.}\\
 
-{\bf \definition}: {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+{\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  X \rightarrow f(X\cup {k}) - f(X) \text{ is non-increasing }
