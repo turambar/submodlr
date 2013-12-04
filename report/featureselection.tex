@@ -1,0 +1,53 @@
+In machine learning and statistics, feature selection is one of the most important concepts. The aim of this process is to select a subset of relevant features for use in the model construction.  In real world problems we usually encounter a large number of features for data points which are mainly redundant or irrelevant. These features might cause problems like complexity  and overfitting of model to the training data. By omitting the redundant and irrelevant features, we can gain:
+\begin{itemize}
+\item improved model interpretability
+\item shorter training and testing time
+\item enhanced generalization of the model by reducing overfitting
+\end{itemize} 
+
+In feature selection process, we  search among features and choose the ones that are more informative in our problem.This definition  can be interpreted as an optimization problem for choosing a subset of features which maximize the mutual information between features and labeling function.
+
+Hence, if $S$ indicates the set of all features and $s$ indicates the chosen feature set, and assuming that $||s||_1\leq b$, we can write the problem as:
+\begin{equation*}
+max_s I(y;x_s)
+\end{equation*} 
+where $y$ is the labeling function.
+
+\subsection{submodularity}
+
+Suppose $A \subset B \subset S$ and $m \not \in B$, for proving the submodularity, we should prove
+
+\begin{eqnarray}
+I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
+\Leftrightarrow H(y|x_A)-H(y|x_A,x_m) &\geq & H(y|x_B)-H(y|x_B,x_m) \label{f1}
+\end{eqnarray}
+  
+ we can write
+\begin{eqnarray} 
+	&&H(y|x_A)-H(y|x_A,x_m) \nonumber \\
+	&=&H(y|x_A)+ H(x_m|x_A)-H(y,x_m|x_A)\nonumber \\
+	&=&H(y|x_A)+ H(x_m|x_A) -H(y|x_A) - H(x_m|x_A,y)\nonumber \\
+	&=& H(x_m|x_A)- H(x_m|x_A,y) \label{f2}
+\end{eqnarray} 
+
+ Substituting this term into equation \ref{f1}, it can be seen that there are cases in which the function is not submodular.
+
+{\bf \lemma}
+If $x_i$s are all conditionally independent given y, then the function is submodular\cite{krausefeature}.
+
+This constraint is met in many practical problems in machine learning area.
+
+
+If $x_i$s are all conditionally independent given y, then equation \ref{f2} can be written  as,
+\begin{equation*}
+H(y|x_A)-H(y|x_A,x_m)=H(x_m|x_A)-H(x_m|x_A,y)
+\end{equation*}
+and if we substitute this in equation \ref{f1},
+
+
+\begin{eqnarray*}
+I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
+\Leftrightarrow H(x_m|x_A) &\geq & H(x_m|x_B)
+\end{eqnarray*} 
+
+Hence, the problem of feature selection can be written as a maximization of a submodular function.\cite{jie}
