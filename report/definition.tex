@@ -1,6 +1,6 @@
 Formally we can define submodularity as the property of set functions $f:2^V \rightarrow \Re$, which assign each subset $S \subseteq V$ a value $f(S)$. Here $V$ is a finite set called the {\it ground set}. We also assume that $f(\emptyset) = 0$.\\
 
-{\bf Definition 1}: {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+ {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  f(X) + f(Y) \geq f(X \cup U) + f(X \cap Y) \text{  } \forall \text{  } X,Y \subseteq V
@@ -8,7 +8,7 @@ Formally we can define submodularity as the property of set functions $f:2^V \ri
 
 In the above definition the function $f$ lends itself to different forms in different application domains. For instance in a Machine Learning context $f$ could be a function that evaluates information of a given set, i.e entropy. Using this notion, we can easily introduce the property of diminishing returns by using an equivalent definition for submodularity.}\\
 
-{\bf Definition 2}: {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+{\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  X \rightarrow f(X\cup {k}) - f(X) \text{ is non-increasing }
@@ -36,7 +36,7 @@ The elements of $B(f)$ as bases of the set $V$ or the polyhedron $P(V)$.
 The basic properties of submodular functions are enumerated below. These properties will help us recast many of our optimization objectives as submodular optimization problems.\\
 
 \begin{itemize}
- \item {\bf Lemma 1.1: \it Closedness Properties}: Submodular functions are closed under non negative linear combinations, i.e if $\{f_1,f_2,...,f_k\}$ are submodular then the function $g(X) = \sum\limits_{i=1}^k\text{ } \alpha_if_i(X) \text{ is submodular }\forall \alpha_i \geq 0$.\\
+ \item {\bf \lemma (Closedness Properties)}: Submodular functions are closed under non negative linear combinations, i.e if $\{f_1,f_2,...,f_k\}$ are submodular then the function $g(X) = \sum\limits_{i=1}^k\text{ } \alpha_if_i(X) \text{ is submodular }\forall \alpha_i \geq 0$.\\
  
  {\bf Corollary}: The sum of a modular and submodular function is a submodular function.\\
  
@@ -44,13 +44,13 @@ The basic properties of submodular functions are enumerated below. These propert
  
  {\bf Corollary [Contraction/conditioning]}: If $X \subseteq Y$ and $f$ is submodular, then $g(X) = f(Y\setminus X)$ is submodular. Equivalently if $Y\subset V$, then $X\rightarrow f(X \cup Y) - f(Y)$ is submodular on $V$ and $V\setminus Y$\\
  
- \item {\bf Lemma 1.2: Partial Minimization}: Monotone submodular functions remain submodular under truncation, i.e if $f(X)$ is submodular then $g(X) := min\{f(X),c\}$ for any constant $c$ is submodular.\\
+ \item {\bf \lemma (Partial Minimization)}: Monotone submodular functions remain submodular under truncation, i.e if $f(X)$ is submodular then $g(X) := min\{f(X),c\}$ for any constant $c$ is submodular.\\
  
  {\bf Note:} This property is not necessarily preserved for max or min for two submodular functions.\\
  
- \item{\bf Lemma 1.3: Cardinality Based Functions} If $f(X)$ is a submodular function, then $g(X) = \phi(f(X))$ is also submodular if $\phi()$ is a concave function.\\
+ \item{\bf \lemma (Cardinality Based Functions)} If $f(X)$ is a submodular function, then $g(X) = \phi(f(X))$ is also submodular if $\phi()$ is a concave function.\\
  
- \item{\bf Lemma 1.4: Lov$\acute{\bf a}$sz Extension} A function $f$ is submodular function, iff its Lov$\acute{a}$sz Extension $\hat{f}$ is convex, where
+ \item{\bf \lemma (Lov$\acute{\bf a}$sz Extension)} A function $f$ is submodular function, iff its Lov$\acute{a}$sz Extension $\hat{f}$ is convex, where
  \[
   \hat{f}(c) = max\{c^Tx \mid x(U) \leq f(U) \text{ } \forall \text{ } U \subseteq V \text{ and } c\in[0,1]^n\}
  \]

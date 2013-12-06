@@ -6,9 +6,9 @@ An important practical aspect of submodular function minimization is that most a
 For the lemmas stated below, we consider $f$ to be a submodular function where $\{f:2^V \rightarrow \Re \mid f(\emptyset) = 0\}$.\\
 
 \begin{itemize}
- \item {\bf Lemma 2.1: (Lattice of minimizers for submodular functions)}: The set of minimizers of $f$ is a lattice, i.e if $X$ and $Y$ are minimizers then $X\cup Y$ and $X \cap Y$ are also minimizers. This is evident from {\bf Definition 1} and {\bf Lemma 1.1}\\
+ \item {\bf \lemma (Lattice of minimizers for submodular functions)}: The set of minimizers of $f$ is a lattice, i.e if $X$ and $Y$ are minimizers then $X\cup Y$ and $X \cap Y$ are also minimizers. This is evident from {\bf Definition 1} and {\bf Lemma 1.1}\\
 
- \item {\bf Lemma 2.2: (Diminishing return property of minimizers of submodular functions)}: The set $X \subset V$ is a minimizer of $f$ on $2^V$ iff $X$ is a minimizer of $2^X \rightarrow \Re$ defined as $Y \subset X \rightarrow f(Y)$ and if $\emptyset$ is a minimizer of the function from $2^{V\setminus X} \rightarrow \Re$  then it is defined as $Y \subset V\setminus X \rightarrow f(Y \cup X) - f(X)$ . This can be easily shown from {\bf Definition 1}.\\
+ \item {\bf \lemma (Diminishing return property of minimizers of submodular functions)}: The set $X \subset V$ is a minimizer of $f$ on $2^V$ iff $X$ is a minimizer of $2^X \rightarrow \Re$ defined as $Y \subset X \rightarrow f(Y)$ and if $\emptyset$ is a minimizer of the function from $2^{V\setminus X} \rightarrow \Re$  then it is defined as $Y \subset V\setminus X \rightarrow f(Y \cup X) - f(X)$ . This can be easily shown from {\bf Definition 1}.\\
  
   {\bf Corollary : (Norm Characterization)}: Suppose $\hat{x}$ is a minimizer of 
  \[
@@ -19,7 +19,7 @@ For the lemmas stated below, we consider $f$ to be a submodular function where $
    A = \{ u \in V \mid \hat{x}(u) \leq 0\}
  \]
 
-  \item{\bf Lemma 2.3: Dual of minimization of submodular functions}: \[ \underset{X \subset V}{\operatorname{min }}\text{ } f(X) =  \underset{x \in B(f) }{\operatorname{max }}\text{ } x^-(V) = f(V) - \underset{x \in B(f) }{\operatorname{min }}\text{ } \|x\| \]
+  \item{\bf \lemma (Dual of minimization of submodular functions)}: \[ \underset{X \subset V}{\operatorname{min }}\text{ } f(X) =  \underset{x \in B(f) }{\operatorname{max }}\text{ } x^-(V) = f(V) - \underset{x \in B(f) }{\operatorname{min }}\text{ } \|x\| \]
   As mentioned in Section \ref{sec:notation} $(x^-)_k = min\{x_k,0\} \text{ } \forall k \in V$. If $X \subset V$ and $x \in B(f)$, we have $f(X) \geq x^-(V)$ with equality iff $\{ x < 0 \} \subset X \subset \{ x\leq 0\}$ and $x(X) = f(X)$. \\
   \[
    \underset{X \subset V}{\operatorname{min }}\text{ } f(X) =  \underset{x \in P(f), x\leq 0 }{\operatorname{max }}\text{ } x(V)

@@ -9,19 +9,19 @@ This implies that all the items observed with specific states in $\chi$ have als
  p(\phi\mid\chi) := \mathbb{P}[\Phi=\phi | \Phi \sim \chi]
 \]
 
-{\bf Definition 3: (Conditional Expected Marginal Benefit):} 
+{\bf \definitions (Conditional Expected Marginal Benefit):} 
 {\it Given a partial realization $\chi$ and a item $x$, the conditional expected marginal belief of $x$ conditioned on having already observed $\chi$ is denoted by $\delta(x\mid\chi)$
 \[
  \delta(x\mid\chi) = \mathbb{E}[f(dom(\chi)\cup\{x\},\Phi) - f(dom(\chi),\Phi) \text{ } \mid \text{ } \Phi \sim \chi]
 \]
 }
-{\bf Definition 4: (Adaptive Monotonicity):}
+{\bf \definitions (Adaptive Monotonicity):}
 {\it A function $f:2^V \times O^V \rightarrow \Re_+$ is adaptive monotone with respect to the distribution $p(\phi)$ if the conditional expected marginal benefit of any item $x$ is non-negative, i.e $\forall \chi$ with $\mathbb{P}[\Phi \sim \chi] \geq 0$ and all $x\in V$ }
 \[
  \delta(x\mid\chi) \geq 0
 \]
 
-{\bf Definition 4: (Adaptive Submodularity):}
+{\bf \definitions (Adaptive Submodularity):}
 {\it A function $f:2^V \times O^V \rightarrow \Re_+$ is adaptive submodular with respect to the distribution $p(\phi)$ if the conditional expected marginal benefit of any fixed item does not increase as more items are selected and their states are observed, i.e if $f$ is adaptively submodular w.r.t to $p(\phi)$ if $\forall \text{ } \chi$ and $\chi'$ where $\chi$ is a subrealization of $\chi'$ and all $x\in V \setminus dom(\chi')$ , the following condition holds true:}
 \[
  \delta(x\mid\chi) \geq \delta(x\mid\chi')
