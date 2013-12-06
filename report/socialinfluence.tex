@@ -1,0 +1,88 @@
+With the increasing popularity of online social network site, such as Facebook and Twitter, social networks now play a fundamental role as medium for people to share, to exchange and to obtain ideas and information. Recently understanding, modeling and utilizing the social influence has become actively pursued by researchers from different aspects, for example~\cite{GJA10,KKT03,GB12,Bharathi:2007,Borodin:2010,chen2011influence,he2012influence,Budak:2011}. It turns out that submodular functions and especially submodular function maximization plays fundamental roles in solving algorithmic question associated with social influence. In this section, we mainly focus on using submodular function maximization techniques to solve two problem related to social influence, namely the influence maximization problem~\cite{KKT03} and the Network Inference problem~\cite{GJA10}.
+\subsection{Influence Maximization}
+Assume that now a company wants to promote its new product among the users living in a social network. The company has limited budgets to give free samples of their new product to the users in the social network. A natural question to ask is which set of the users that the company should give the free sample to, such that the overall adoption of the new product can be maximized. The question is exactly the Influence maximization problem, namely selecting a small set of seed nodes in a social networks, such that its overall influence coverage is maximized under certain diffusion model.
+
+Among the many diffusion models, Independent Cascade (IC) model and Linear Threshold (LT) are used widely in the study of influence maximization~\cite{KKT03}. Both IC and LT models are stochastic models characterizing how influence propagates throughout the network starting from the initial seed notes.
+
+%In the IC model, each edge $(u,v)$ in the social network is associated with an activation probability $p_{u,v}$. When a node $u$ becomes newly activated, it has exactly one chance to activate each of his still inactive neighbor $v$ with success probability $p_{u,v}$. When multiple activation attempts occur at the same same time, the attempts are considered independent from each other. For example, node $u_1$ and $u_2$ are newly activated and are both neighbor of inactive node $v$. The probability that node $u$ is activated is $1-(1-P_{u_1,v})(1-P_{u_2,v})$. The process starts with a given initial seed set $S$ and ends when no more nodes can be activated.
+%
+%In the LT model, instead each edge $(u,v)$ in the social network is associated with an weight $w_{u,v}$, satisfying the property that the summation of incoming edge weight for every node is less or equal than $1$, namely $\sum_{u\in N_{in}(v)}w_{u,v}\leq1$. Moreover, each node $v$ is also associated with a threshold $\theta_v$. In LT model, a node becomes activated if the incoming weight for activated neighbors exceeds its threshold. Similar to IC model, the process starts with a given initial seed set $S$ and ends when no more nodes can be activated.
+
+For influence maximization, the objective function $\sigma(S)$, where $S$ is the initial seed set, is the expected number of activated nodes under the diffusion model. The problem is simply to maximize $\sigma(S)$ subject to the cardinality constraint $|S|\leq k$.
+
+It has been shown that the influence maximization problem under both IC model and LT model is NP-hard~\cite{KKT03}. However, by the following theorems the problem allows efficient approximation algorithm.
+ \begin{theorem}[Kempe et al.~\cite{KKT03}]\label{Thm:KKT}
+The objective function of influence maximization problem under both IC and LT model is non-negative, monotone and submodular.
+\end{theorem}
+By the classic greedy algorithm for monotone submodular function maximization, a $1-1/e$ approximation guarantee can be achieved. The proof of the theorem is by the fact that conic combination of submodular functions is also submodular. The objective function is a expectation and can be written as
+$$
+\sigma(S) = \sum_{\text{outcome }X}Prob[X]\sigma(S|X),
+$$
+where $X$ is any realization of the stochastic diffusion process. A reachability argument for both IC model and LT model can be used to show that $\sigma(S|X)$ is submodular under any $X$. 
+
+Though the greedy algorithm can solve the problem approximately in polynomial time, the key step of Greedy algorithm, evaluation of the marginal gain $\sigma(S\cup\{u\})-\sigma(S)$, takes long time for large networks. Large number of papers have been published to improve the efficiency of the algorithm~\cite{Chen:2010,Leskovec:2007:COD:1281192.1281239,Goyal:2011:COG:1963192.1963217,DBLP:conf/icdm/ChenYZ10,Chen:2010:SIM:1835804.1835934} , either by lazy evaluation~\cite{Leskovec:2007:COD:1281192.1281239,Goyal:2011:COG:1963192.1963217} , or approximate evaluation of the marginal gain~\cite{Chen:2010,DBLP:conf/icdm/ChenYZ10,Chen:2010:SIM:1835804.1835934} .
+
+A more general result on Generalized Linear Threshold model has been prove containing the results on IC and LT model in~\cite{Mossel2007}. The proof uses a sophisticated stage-wise coupling argument to show the submodularity. The idea of the proof is to add the initial seeds and propagate the influence stage by stage. The key component in the proof is the anti-sense coupling used in the last stage.
+
+A extension to influence maximization that draws much attention recently is to solve this problem under the competitive influence. Competitive influence implies that two or multiple competitive products, or ideas are propagating simultaneously in the social network. The influence maximization problem naturally extends to maximizing one's own influence~\cite{Bharathi:2007,Borodin:2010,chen2011influence} or
+minimizing the influence of the competitors~\cite{he2012influence,Budak:2011} given the choices of the initial seeds of the competitors. For example, on the maximization side,~\cite{ChenCCKLRSWWY11} study the influence maximization when a user can dislike the product and propagate bad news about it. On the minimization side, ~\cite{HSCJ2012} study the influence blocking maximization, which focuses on selecting seeds to block the propagation of rumors. Both approachs solve the optimization problem by showing the objective function is monotone and submodular. The proof technique is similar to that in~\cite{KKT03}. However, the argument are much more complicated due to the interaction of competitive diffusion.
+\subsection{Network Inference}
+The social network structure with the strength of influence on each edge is the input to the influence maximization problem. However, in most cases, the underlying network that enables the diffusion is hidden (e.g. networks on who influenced whom). The most common observations of information diffusion are only the activation time for individual in social network (e.g. the time stamps  when a person posted a blog containing certain information or retweeted others' tweets, or buying a certain product in viral marketing application). Network inference problem focuses on revealing the diffusion network from the observed cascades occurring among the individuals in the social network. Existing approach to this problem solves a maximum likelihood estimation problem with respect to the network structure under certain diffusion models~\cite{GJA10,GB12,GDB11,SJ10}. It turns out that the likelihood function of this problem can be approximated with a submodualr function. Thus submodular function maximization can be used to solve this problem~\cite{GJA10,GB12}.
+
+The extended IC model is used as the diffusion model in~\cite{GJA10,GB12}. In the extended IC model, each edge is associated with an activation probability. Moreover, each activation has time delay. For example, if node $v$ is activated at time $t_v$ and the activation attempt to $v$'s neighbour $u$ succeeds. Then $u$ with become activated at time $t_u+\Delta t$, where $\Delta t$ is the time delay. In the model, the delay time satisfies exponential distribution or power law distribution, namely
+$$
+P_d(\Delta t)\propto e^{-\frac{\Delta t}{\alpha}} \text{\ or\ } P_d(\Delta t)\propto\frac{1}{\Delta t^\alpha}
+$$
+
+Then according to the model, if $v$ which is activated at time $t_v$ and $v$ succeeds in activating node $u$ which becomes activated at time $t_u$. Then the probability this activation occurs is:
+$$
+P_c(v,u)=P_d(t_u-t_v)p_{vu}
+$$
+Also the model assumes that influence can only propagate forward in time, which means $
+P_c(v,u)=0 \text{\ if\ }\ t_v>t_u.
+$
+Then if the pattern of cascade $c$ forms a tree $T$, the probability that the cascade is observed given the tree is
+$$
+P(c|T)=\prod_{(i,j)\in T}P_c(i,j)
+$$
+In addition, if we assume the who-infect-who relation forms a tree pattern (one is only activated by one person). Then given a certain $G$, the probability we observe the cascade $c$ would be
+$$
+P(c|G)=\sum_{T\in T(G)}P(c|T)P(T|G)\propto \sum_{T\in T(G)}\prod_{(i,j)\in T}P_c(i,j)
+$$
+where $T(G)$ is all directed spanning tree on $G$.
+Therefore, if we have observed a set of cascades $C=\{c_1,c_2,\ldots\}$,
+The probability of observing all these cascades is
+$$
+P(C|G)=\prod_{c\in C}P(c|G).
+$$
+Under this configuration, the network inference problem is to find an graph $\hat{G}=(V,\hat{E})$ with less than $k$ edges such that
+$$
+\hat{G} = \arg\max_{|E|\leq k} P(C|G)
+$$
+In the objective function, we sum over all spanning trees of the graph $G$, which is super-exponential. In order to make this computation feasible, only the spanning tree with the maximal likelihood is considered as a approximation, namely
+$$
+P(C|G)=\prod_{c\in C}\max_{T\in T(G)}P(c|T)=\prod_{c\in C}\max_{T\in T(G)}\prod_{(i,j)\in T}P_c(i,j)
+$$
+Then we define $F_c(G)$ as the difference between the log likelihood of cascade $c$ over graph $G$ and empty graph $\bar{K}$.
+$$
+F_c(G)=\max_{T\in T(G)}\log P(c|T)-\max_{T \in T(\bar{K})}\log P(c|T)
+$$
+and take sum over all the cascades, we have
+$$
+F_C(G)=\sum_{c\in C}F_c(G)
+$$
+$\bar{K}$ is a graph with all the nodes in $G$ and also a extra node $m$. The only edges in $\bar{K}$ are the edges from $m$ to every other nodes with activation probability $\varepsilon$ and delay $0$. The extra node represents the external influence.
+Then the optimization problem can be rewritten as
+\begin{equation}\label{Equ:SubObj}
+G^*=\arg\max_{|E|\leq k}F_C(G)
+\end{equation}
+For this objective function, ~\cite{GJA10} has proved that it is monotone and submodular. Therefore, greedy algorithm can achieve $1-\frac{1}{e}$ approximation for solving this problem. The algorithm is later improve by MultiTree algorithm in ~\cite{GB12}, where the the matrix tree theorem is used to calculated the exact summation over all possible spanning trees, instead of approximating with the maximum spanning tree.
+
+In a on-going project by Xinran He with Prof. Yan Liu, we are experimenting with using Maximum a Posteriori inference to solve the network inference problem. The previous approaches assumes no prior knowledge about the structure of the inferred graph. However, is has been well-known that social network has many unique properties, such as heavy-tail degree distribution, small diameter and community structure and so on. We propose to introduce a social network generation model over the diffusion network as a prior to incorporate the prior knowledge about network structure. Our current choice is the Kronecker graphs model~\cite{JDJCZ10,KJ11}. The Kronecker graphs model is a parametric model which can provide a probability for the existence of each edge in the social network. The existence of each edge is considered independent under this model. Using this model as a prior, we can change the objective function $F_C(G)$ in Equation~\ref{Equ:SubObj} to
+$$
+F'_C(G) = F_C(G) + \sum_{e\in E}(\log Prob[e\ \text{exists}]-\log Prob[e\ \text{not exists}]).
+$$
+ After adding a modular function to a submodular function, the resulted $F'_C(G)$ is still submodular, however it may not necessary be monotone any more. As a result, the simple greedy algorithm can not be used to solve this problem. Instead, we can use the algorithm proposed in~\cite{FeldmanNS11} with a $1/2+o(1)$ approximation guarantee.
+%\bibliographystyle{abbrv}
+%\bibliography{ref}
+
