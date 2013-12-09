@@ -1,0 +1,175 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+\documentclass[a4paper, 10pt, onecolumn]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+%\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+%\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{subfigure}
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{verbatim} %for multiline comment
+%\usepackage[usenames,dvips,pdftex]{color}
+%\usepackage[pdftex]{color,graphicx}
+%\usepackage{sty/algorithm}
+%\usepackage[mathscr]{euscript}
+%\usepackage{subfig}
+\usepackage[margin=1in]{geometry}
+%\RequirePackage{setspace}
+%\usepackage{mathptmx}
+\usepackage{amssymb,amsfonts,bbm,stmaryrd}
+\usepackage{algorithm,algorithmicx,listings}  % algorithms
+\usepackage[noend]{algpseudocode}	
+\usepackage[mathscr]{euscript}
+
+\usepackage{times}                      
+\usepackage{color}                       
+
+%\usepackage{amsthm,amsfonts,amssymb,bm} 
+\usepackage[fleqn]{amsmath}
+\usepackage{graphicx,psfrag}                   
+\usepackage{makeidx}                            
+\usepackage{listings}                          
+\usepackage{dsfont}
+\usepackage{enumerate}
+
+\graphicspath{{figs/}}
+
+%\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+
+% necessary for algorithmicx
+%=================================================================%
+% Commands
+\def\liminf{\mathop{\lim\,\inf}\limits}	% EXAMPLE: \liminf_n A_n
+\def\limsup{\mathop{\lim\,\sup}\limits}	%
+\def\argmin{\mathop{\arg\,\min}\limits}	%
+\def\argmax{\mathop{\arg\,\max}\limits}	%
+\newcommand{\indicator}{\mathbbm{1}}
+\newcommand{\txbx}[1]{\boxed{\text{#1}}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definitions}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+\newtheorem{problem}{Problem}
+
+\title{\LARGE \bf
+Learning and Optimization with Submodular Functions
+}
+\author{Bharath Sankaran, Marjan Ghazvininejad, Xinran He, David Kale, Liron Cohen}
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\input{motivation.tex}
+
+
+\section{What is Submodularity: Formal Definition}
+\input{definition.tex}
+
+\section{Submodular Optimization}
+Submodular functions have many interesting connections with convex and concave functions as demonstrated by {\bf Lemma 3}. Just as minimization of convex functions can be done efficiently, unconstrained submodular minimization is also possible in strongly polynomial time. Submodular function maximization in contrast is a NP hard combinatorial optimization problem, but approximate solutions can be found with guarantees. In fact a simple greedy solution method obtains a $(1 - 1/e)$ approximation, given that we are maximizing a non-decreasing submodular function under matroid constraints.
+
+\subsection{Submodular Function Minimization}
+\input{minimization.tex}
+
+\subsection{Submodular Function Maximization}
+\input{maximization.tex}
+
+\subsection{Adaptive Submodularity}
+\input{adaptive.tex}
+
+\section{Applications}
+\subsection{Feature Selection: Marjan}
+\input{featureselection.tex}
+
+\subsection{MAP Inference: Bharath}
+\input{mapinference.tex}
+
+\subsection{Active Learning: David}
+\input{activelearning.tex}
+
+\subsection{Constraint Satisfaction: Liron}
+\input{csp.tex}
+
+\subsection{Social Influence: Xinran}
+\input{socialinfluence.tex}
+
+% \subsection{OLD STUFF}
+% \[
+%  A(s^t) = \underset{a}{\operatorname{argmax }}\text{ } r_a^t + \mathbb{E} V^{S^{t+1}}(K(s^t,a))
+% \]
+% where, $s \text{ is the current state }\\
+% \mathbb{E} V^{S^{t+1}} \text{ is the expected value over all future states }\\
+% K(s^t,a) \text{ is the transition function which takes state, $s^t$ and action $a$ as input }\\$
+% 
+% In cases where both the transition probabilities or the reward distributions are unknown, one can appeal to Reinforcement Learning methods. In such methods the system needs to execute a series of actions and observe rewards to approxmiate the reward function. In Interactive perception problems, both the transition model and the reward functions are hard to model a priori. Moreover given that the state space of these problems are incredibly large, the probability of being able to explore the entire state space is minimal. In order to circumvent these issues we can try to approximate the reward function associated with each action and be agnostic to the states in which these actions are executed. The class of problems where we approximate the reward distribution for each action while simultaneously optimizing decisions based on existing knowledge are commonly referred to as armed bandit problems in the literature. 
+% 
+% These problems efficiently balance the exploration/exploitation tradeoff. Here the observed rewards are used to approximate the reward distributions for each action. Hence each action can be thought of as being analgous to making a measurement (i.e sampling the reward distribution). In classic bandit approaches, actions are selected via a greedy policy with some notion exploration/exploitation tradeoff encoded in the action selection policy. For us to ensure that the action being selected for such a strategy is optimal we need to ensure that the action (or measurement) we take is optimal if it were the last measurement we were allowed to make.
+% 
+% From our previous action selection definition used for MDPs we can re-write the expected value over the next state which balances exploration and exploitation for a multi-armed bandit, as follows
+% \[
+%  \mathbb{E} V^{S^{t+1}}(K(s^t,a)) = (\tau - t)(\underset{a'}{\operatorname{max }}\text{ } r_{a'}^t) + (\tau - t) \nu_{a'}^{KG,t}
+% \]
+% 
+% where, $\nu_{a'}^{KG,t} \text{ is the knowledge gradient }$\\
+% 
+% The knowledge gradient can be thought of the direction(gradient) along which we move in the action(policy) space in order to maximize our objective function, i.e expected reward. This definition will become clearer in the following sections. In the literature, the knowledge gradient is defined as ``choosing the measurement that would be optimal if it were the last measurement we were allowed to make'' \cite{KG_Ryzhov_12}, hence it is the gradient that would reduce the variance in the expected reward distribution.\\
+% \[
+% \nu_{a'}^{KG,t} = \mathbb{E}^t[(\underset{a'}{\operatorname{max }}\text{ } r_{a'}^{t+1}) - (\underset{a'}{\operatorname{max }}\text{ }  r_{a'}^{t}) ] 
+% \]
+% $\nu_{a'}^{KG,t}$ can be considered as the marginal value of information. Hence this summarizes our action selection strategy for both the finite and infinite horizon problem as follows:\\
+% \[
+%  \text{ {\bf Finite Horizon: }}A(s^t) = \underset{a}{\operatorname{argmax }}\text{ } r_a^t + (\tau - t)\nu_{a'}^{KG,t}
+%  \]
+%  \[
+%  \text{ {\bf Infinite Horizon: }}A(s^t) = \underset{a}{\operatorname{argmax }}\text{ } r_a^t + \frac{\gamma}{1-\gamma}\nu_{a'}^{KG,t}
+% \]
+% where $\gamma$ is the discount factor for the infinite horizon case. When relating to the context of classic multiarm bandits, instead of simply picking the action that looks best, we pick the action with an added uncertainity parameter that balances exploration and exploitation.
+% \begin{center}
+%  \begin{align*}
+%  p(\theta | D) &\propto p(D| \theta)p(\theta)  \\
+%  &\propto \text{Ber}(\theta)\text{Be}(\alpha,\beta)\\
+%  &\propto \text{Ber}(N_1|\theta)\text{Be}(\alpha,\beta)\\
+%   &\propto \text{Be}(\alpha + N_1, \beta + N_0)
+% \end{align*}
+% \end{center}
+% 
+% This simplifies our updates to simply adding the number of observed events $N$ to the hyperparameters
+% 
+% \begin{center}
+%  \begin{align*}
+%  \alpha_a^{t+1} &= \alpha_a^t + N  \\
+%  \beta_a^{t+1} &= \beta_a^t + (1 - N)\\
+% \end{align*}
+% \end{center}
+% 
+
+\nocite{*}
+\bibliographystyle{./IEEEtran}
+\bibliography{bibliography}
+\end{document}
