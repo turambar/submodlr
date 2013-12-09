@@ -49,7 +49,7 @@ $(PROJNAME).pdf: $(SOURCEFILE).tex $(INCLUDES)
 	mv -f $(SOURCEFILE).pdf $(PROJNAME).pdf
 
 clean:
-	rm -f $(PROJNAME).aux $(PROJNAME).log $(PROJNAME).nav $(PROJNAME).out $(PROJNAME).snm $(PROJNAME).toc $(PROJNAME).bbl $(PROJNAME).blg $(PROJNAME)_out.aux $(PROJNAME)_out.log $(PROJNAME)_out.nav $(PROJNAME)_out.snm $(PROJNAME)_out.toc $(PROJNAME)_out.tex $(SOURCEFILE).dvi $(SOURCEFILE).pdf $(SOURCEFILE).aux $(SOURCEFILE).log $(SOURCEFILE).nav $(SOURCEFILE).out $(SOURCEFILE).snm $(SOURCEFILE).toc $(SOURCEFILE).bbl $(SOURCEFILE).blg *~
+	rm -f *.aux *.log *.nav *.out *.snm *.toc *.bbl *.blg *_out.aux *_out.log *_out.nav *_out.snm *_out.toc *_out.tex $(SOURCEFILE).dvi $(SOURCEFILE).pdf $(SOURCEFILE).aux $(SOURCEFILE).log $(SOURCEFILE).nav $(SOURCEFILE).out $(SOURCEFILE).snm $(SOURCEFILE).toc $(SOURCEFILE).bbl $(SOURCEFILE).blg *~
 
 clobber: clean
 	rm -f $(PROJNAME).dvi $(PROJNAME).ps $(PROJNAME).pdf
