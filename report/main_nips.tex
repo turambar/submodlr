@@ -1,80 +1,44 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
-                                                          % if you need a4paper
-%\documentclass[a4paper, 10pt, onecolumn]{ieeeconf}      % Use this line for a4
-                                                          % paper
-\documentclass{article}
-%\documentstyle[nips13submit_e,times,art10]{article}
-
-%\IEEEoverridecommandlockouts                              % This command is only
-                                                          % needed if you want to
-                                                          % use the \thanks command
+%\documentclass[letterpaper, 10 pt, onecolumn]{ieeeconf}
+%\IEEEoverridecommandlockouts
 %\overrideIEEEmargins
-% See the \addtolength command later in the file to balance the column lengths
-% on the last page of the document
 
-
+\documentclass{article}
 \usepackage{nips13submit_e,times}
-% The following packages can be found on http:\\www.ctan.org
+
 \usepackage{graphics} % for pdf, bitmapped graphics files
 \usepackage{epsfig} % for postscript graphics files
 \usepackage{subfigure}
 %\usepackage{mathptmx} % assumes new font selection scheme installed
-%\usepackage{times} % assumes new font selection scheme installed
-%\usepackage{amsmath} % assumes amsmath package installed
-%\usepackage{amssymb}  % assumes amsmath package installed
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{setspace}
 \usepackage{verbatim} %for multiline comment
 %\usepackage[usenames,dvips,pdftex]{color}
 %\usepackage[pdftex]{color,graphicx}
-%\usepackage{sty/algorithm}
-\usepackage[mathscr]{euscript}
+%\usepackage[mathscr]{euscript}
 %\usepackage{subfig}
 \usepackage[margin=1in]{geometry}
-%\RequirePackage{setspace}
 %\usepackage{mathptmx}
 \usepackage{amssymb,amsfonts,bbm,stmaryrd}
 \usepackage{algorithm,algorithmicx,listings}  % algorithms
 \usepackage[noend]{algpseudocode}	
 \usepackage[mathscr]{euscript}
-
 \usepackage{times}                      
 \usepackage{color}                       
-
-%\usepackage{amsthm,amsfonts,amssymb,bm} 
-\usepackage[fleqn]{amsmath}
+\usepackage{amsmath}
 \usepackage{graphicx,psfrag}                   
 \usepackage{makeidx}                            
 \usepackage{listings}                          
 \usepackage{dsfont}
-\usepackage{enumerate}
 
 \graphicspath{{figs/}}
 
-%\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
-
 \nipsfinalcopy
-
-% necessary for algorithmicx
-%=================================================================%
-% Commands
-\def\liminf{\mathop{\lim\,\inf}\limits}	% EXAMPLE: \liminf_n A_n
-\def\limsup{\mathop{\lim\,\sup}\limits}	%
-\def\argmin{\mathop{\arg\,\min}\limits}	%
-\def\argmax{\mathop{\arg\,\max}\limits}	%
-\newcommand{\indicator}{\mathbbm{1}}
-\newcommand{\txbx}[1]{\boxed{\text{#1}}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
+\newtheorem{proof}[theorem]{Proof}
 \newtheorem{definitions}{Definition}
-\newtheorem{assumption}{Assumption}
-\newtheorem{remark}{Remark}
-\newtheorem{problem}{Problem}
 
 \title{\LARGE \bf
 Learning and Optimization with Submodular Functions
