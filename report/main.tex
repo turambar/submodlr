@@ -1,9 +1,9 @@
-%\documentclass[letterpaper, 10 pt, onecolumn]{ieeeconf}
+\documentclass[letterpaper, 10 pt, onecolumn]{ieeeconf}
 %\IEEEoverridecommandlockouts
 %\overrideIEEEmargins
 
-\documentclass{article}
-\usepackage{nips13submit_e,times}
+%\documentclass{article}
+%\usepackage{nips13submit_e,times}
 
 \usepackage{graphics} % for pdf, bitmapped graphics files
 \usepackage{epsfig} % for postscript graphics files
@@ -33,11 +33,11 @@
 
 \graphicspath{{figs/}}
 
-\nipsfinalcopy
+%\nipsfinalcopy
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proof}[theorem]{Proof}
+%\newtheorem{proof}[theorem]{Proof}
 \newtheorem{definitions}{Definition}
 
 \title{\LARGE \bf
@@ -58,7 +58,7 @@ Learning and Optimization with Submodular Functions
 \input{definition.tex}
 
 \section{Submodular Optimization}
-Submodular functions have many interesting connections with convex and concave functions as demonstrated by {\bf Lemma 3}. Just as minimization of convex functions can be done efficiently, unconstrained submodular minimization is also possible in strongly polynomial time. Submodular function maximization, in contrast, is a NP hard combinatorial optimization problem, but approximate solutions can be found with guarantees. In fact a simple greedy solution method obtains a $(1 - 1/e)$ approximation, given that we are maximizing a non-decreasing submodular function under matroid constraints.
+Submodular functions have many interesting connections with convex and concave functions as demonstrated by {\bf Lemma 3}. Just as minimization of convex functions can be done efficiently, unconstrained submodular minimization is also possible in strongly polynomial time. Submodular function maximization in contrast is a NP hard combinatorial optimization problem, but approximate solutions can be found with guarantees. In fact a simple greedy solution method obtains a $(1 - 1/e)$ approximation, given that we are maximizing a non-decreasing submodular function under matroid constraints.
 
 \subsection{Submodular Function Minimization}
 \input{minimization.tex}
@@ -80,7 +80,6 @@ Submodular functions have many interesting connections with convex and concave f
 \input{activelearning.tex}
 
 \subsection{Constraint Satisfaction}
-%\input{csp.tex}
 \input{constraints.tex}
 
 \subsection{Social Influence}
