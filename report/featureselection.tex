@@ -7,7 +7,7 @@ In machine learning and statistics, \textit{feature selection} is one of the mos
 
 In feature selection, we search among features and choose the ones that are, in a broad sense, most informative or useful. This definition can be interpreted as an optimization problem for choosing a subset of features which maximize the mutual information between features and labeling function.
 
-Hence, if $V$ indicates the set of all features and $S$ indicates the chosen feature set, and $x_S$ the vector of features in $S$, assuming that $||s||_1 \leq b$, we can write the problem as:
+Hence, if $V$ indicates the set of all features and a binary vector $S$ indicating the chosen feature set, and $x_S$ the real valued vector of feature values for features in $S$, then assuming that $||S||_1 \leq b$, we can write the problem as:
 \begin{equation*}
 max_s I(y;x_s)
 \end{equation*} 
@@ -15,7 +15,7 @@ where $y$ is the labeling function.
 
 \subsubsection{Submodularity}
 
-Suppose $A \subset B \subset S$ and $m \not \in B$, for proving the submodularity, we should prove
+We will now show that this is submodular. Suppose $A \subset B \subset S$ and $m \not \in B$. We can show that
 
 \begin{eqnarray}
 I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
@@ -30,17 +30,19 @@ I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
 	&=& H(x_m|x_A)- H(x_m|x_A,y) \label{f2}
 \end{eqnarray} 
 
- Substituting this term into equation \ref{f1}, it can be seen that there are cases in which the function is not submodular.
+By substituting into equation \ref{f1}, we can see that there are cases where this problem is not submodular. Here we give the necessary conditions for submodularity:
+
 \begin{itemize}
 \item {\bf \lemma} If $x_i$s are all conditionally independent given y, then the function is submodular \cite{krausefeature}.
 \end{itemize}
 
-This constraint is met in many practical problems in machine learning area. If $x_i$s are all conditionally independent given y, then equation \ref{f2} can be written as,
+This constraint is met in many practical machine learning problems. If the $x_i$'s are all conditionally independent given $y$, then equation \ref{f2} can be written as
+
 \begin{equation*}
 H(y|x_A)-H(y|x_A,x_m)=H(x_m|x_A)-H(x_m|x_A,y)
 \end{equation*}
-and if we substitute this in equation \ref{f1},
 
+and if we substitute this in equation \ref{f1}, then it follows that 
 
 \begin{eqnarray*}
 I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
