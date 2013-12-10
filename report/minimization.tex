@@ -10,7 +10,7 @@ For the lemmas stated below, we consider $f$ to be a submodular function where $
 
  \item {\bf \lemma (Diminishing return property of minimizers of submodular functions)}: The set $X \subset V$ is a minimizer of $f$ on $2^V$ iff $X$ is a minimizer of $2^X \rightarrow \mathds{R}$ defined as $Y \subset X \rightarrow f(Y)$ and if $\emptyset$ is a minimizer of the function from $2^{V\setminus X} \rightarrow \mathds{R}$  then it is defined as $Y \subset V\setminus X \rightarrow f(Y \cup X) - f(X)$ . This can be easily shown from {\bf Definition 1}.\\
  
-  {\bf Corollary : (Norm Characterization)}: Suppose $\hat{x}$ is a minimizer of 
+  {\it Corollary 6.1 : (Norm Characterization)}: Suppose $\hat{x}$ is a minimizer of 
  \[
   \underset{x}{\operatorname{min }}\text{ } \| x\|_2^2 \text{ subject to } x\in B(f)
  \]
@@ -48,7 +48,7 @@ In the case of submodular functions, one needs to search through the set of all 
 \If{$x^Ty' = x^Tx$}
 \State {\bf return} x
 \Else
-$S \leftarrow S \cup \{y'\}$
+\State $S \leftarrow S \cup \{y'\}$
 \EndIf
 \State {\bf Minimization over affine hull of $S$}: $z \leftarrow  \underset{y}{\operatorname{argmin }}\text{ } {\|y\|_2^2 \text{ where } y\in S}$
 \State {\bf Projection on to convex hull of $S$}: 
