@@ -31,14 +31,11 @@ I(y;x_A \cup x_m) - I(y;x_A) &\geq & I(y;x_B \cup x_m) - I(y;x_B) \nonumber \\
 \end{eqnarray} 
 
  Substituting this term into equation \ref{f1}, it can be seen that there are cases in which the function is not submodular.
+\begin{itemize}
+\item {\bf \lemma} If $x_i$s are all conditionally independent given y, then the function is submodular \cite{krausefeature}.
+\end{itemize}
 
-{\bf \lemma}
-If $x_i$s are all conditionally independent given y, then the function is submodular\cite{krausefeature}.
-
-This constraint is met in many practical problems in machine learning area.
-
-
-If $x_i$s are all conditionally independent given y, then equation \ref{f2} can be written  as,
+This constraint is met in many practical problems in machine learning area. If $x_i$s are all conditionally independent given y, then equation \ref{f2} can be written as,
 \begin{equation*}
 H(y|x_A)-H(y|x_A,x_m)=H(x_m|x_A)-H(x_m|x_A,y)
 \end{equation*}

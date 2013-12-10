@@ -1,6 +1,6 @@
 Formally we can define submodularity as the property of set functions $f:2^V \rightarrow \Re$, which assign each subset $S \subseteq V$ a value $f(S)$. Here $V$ is a finite set called the {\it ground set}. We also assume that $f(\emptyset) = 0$.\\
-
- {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+\begin{itemize}
+ \item {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  f(X) + f(Y) \geq f(X \cup U) + f(X \cap Y) \text{  } \forall \text{  } X,Y \subseteq V
@@ -8,7 +8,7 @@ Formally we can define submodularity as the property of set functions $f:2^V \ri
 
 In the above definition the function $f$ lends itself to different forms in different application domains. For instance in a Machine Learning context $f$ could be a function that evaluates information of a given set, i.e entropy. Using this notion, we can easily introduce the property of diminishing returns by using an equivalent definition for submodularity.}\\
 
-{\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+\item {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
 
 \[
  X \rightarrow f(X\cup {k}) - f(X) \text{ is non-increasing }
@@ -18,6 +18,7 @@ In the above definition the function $f$ lends itself to different forms in diff
 \]
 
 Finally, a set function $f$ is called {\bf supermodular} if $-f$ is submodular, and if $f$ is both sub and supermodular then the function is called a {\bf modular function}.}
+\end{itemize}
 
 \subsection{Notation I}
 \label{sec:notation}
@@ -38,11 +39,11 @@ The basic properties of submodular functions are enumerated below. These propert
 \begin{itemize}
  \item {\bf \lemma (Closedness Properties)}: Submodular functions are closed under non negative linear combinations, i.e if $\{f_1,f_2,...,f_k\}$ are submodular then the function $g(X) = \sum\limits_{i=1}^k\text{ } \alpha_if_i(X) \text{ is submodular }\forall \alpha_i \geq 0$.\\
  
- {\bf Corollary}: The sum of a modular and submodular function is a submodular function.\\
+ {\it Corollary 1.1}: The sum of a modular and submodular function is a submodular function.\\
  
- {\bf Corollary [Restriction/marginalization]}: if $Y\subset V$, then $X\rightarrow f(X \cap Y)$ is submodular on $V$ and $Y$.\\
+ {\it Corollary 1.2: (Restriction / marginalization)}: if $Y\subset V$, then $X\rightarrow f(X \cap Y)$ is submodular on $V$ and $Y$.\\
  
- {\bf Corollary [Contraction/conditioning]}: If $X \subseteq Y$ and $f$ is submodular, then $g(X) = f(Y\setminus X)$ is submodular. Equivalently if $Y\subset V$, then $X\rightarrow f(X \cup Y) - f(Y)$ is submodular on $V$ and $V\setminus Y$\\
+ {\it Corollary 1.3: (Contraction / conditioning)}: If $X \subseteq Y$ and $f$ is submodular, then $g(X) = f(Y\setminus X)$ is submodular. Equivalently if $Y\subset V$, then $X\rightarrow f(X \cup Y) - f(Y)$ is submodular on $V$ and $V\setminus Y$\\
  
  \item {\bf \lemma (Partial Minimization)}: Monotone submodular functions remain submodular under truncation, i.e if $f(X)$ is submodular then $g(X) := min\{f(X),c\}$ for any constant $c$ is submodular.\\
  
