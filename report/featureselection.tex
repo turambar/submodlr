@@ -1,13 +1,13 @@
-In machine learning and statistics, feature selection is one of the most important concepts. The aim of this process is to select a subset of relevant features for use in the model construction.  In real world problems we usually encounter a large number of features for data points which are mainly redundant or irrelevant. These features might cause problems like complexity  and overfitting of model to the training data. By omitting the redundant and irrelevant features, we can gain:
+In machine learning and statistics, \textit{feature selection} is one of the most important concepts. The aim of this process is to select a subset of relevant features for use in model construction and parameter fitting.  In real world problems, we often begin learning with a large number of candidate features that may be redundant, irrelevant, or noisy. Such features needlessly increase the complexity of our models and may lead to overfitting and poor generalization to previously unseen data. By pruning out redundant or irrelevant features, we can gain:
 \begin{itemize}
 \item improved model interpretability
-\item shorter training and testing time
+\item increased computational efficiency, particularly during parameter fitting and prediction
 \item enhanced generalization of the model by reducing overfitting
 \end{itemize} 
 
-In feature selection process, we  search among features and choose the ones that are more informative in our problem.This definition  can be interpreted as an optimization problem for choosing a subset of features which maximize the mutual information between features and labeling function.
+In feature selection, we search among features and choose the ones that are, in a broad sense, most informative or useful. This definition can be interpreted as an optimization problem for choosing a subset of features which maximize the mutual information between features and labeling function.
 
-Hence, if $S$ indicates the set of all features and $s$ indicates the chosen feature set, and assuming that $||s||_1\leq b$, we can write the problem as:
+Hence, if $V$ indicates the set of all features and $S$ indicates the chosen feature set, and $x_S$ the vector of features in $S$, assuming that $||s||_1 \leq b$, we can write the problem as:
 \begin{equation*}
 max_s I(y;x_s)
 \end{equation*} 

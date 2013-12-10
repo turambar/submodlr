@@ -3,12 +3,12 @@ Submodular function minimization can be divided into two categories, exact and a
 An important practical aspect of submodular function minimization is that most algorithms come with online approximation guarantees {\it due to a duality relationship}, which we will detail in the following subsections.\\
 
 \subsubsection{\bf Submodular Function Minimizers}
-For the lemmas stated below, we consider $f$ to be a submodular function where $\{f:2^V \rightarrow \Re \mid f(\emptyset) = 0\}$.\\
+For the lemmas stated below, we consider $f$ to be a submodular function where $\{f:2^V \rightarrow \mathds{R} \mid f(\emptyset) = 0\}$.\\
 
 \begin{itemize}
  \item {\bf \lemma (Lattice of minimizers for submodular functions)}: The set of minimizers of $f$ is a lattice, i.e if $X$ and $Y$ are minimizers then $X\cup Y$ and $X \cap Y$ are also minimizers. This is evident from {\bf Definition 1} and {\bf Lemma 1.1}\\
 
- \item {\bf \lemma (Diminishing return property of minimizers of submodular functions)}: The set $X \subset V$ is a minimizer of $f$ on $2^V$ iff $X$ is a minimizer of $2^X \rightarrow \Re$ defined as $Y \subset X \rightarrow f(Y)$ and if $\emptyset$ is a minimizer of the function from $2^{V\setminus X} \rightarrow \Re$  then it is defined as $Y \subset V\setminus X \rightarrow f(Y \cup X) - f(X)$ . This can be easily shown from {\bf Definition 1}.\\
+ \item {\bf \lemma (Diminishing return property of minimizers of submodular functions)}: The set $X \subset V$ is a minimizer of $f$ on $2^V$ iff $X$ is a minimizer of $2^X \rightarrow \mathds{R}$ defined as $Y \subset X \rightarrow f(Y)$ and if $\emptyset$ is a minimizer of the function from $2^{V\setminus X} \rightarrow \mathds{R}$  then it is defined as $Y \subset V\setminus X \rightarrow f(Y \cup X) - f(X)$ . This can be easily shown from {\bf Definition 1}.\\
  
   {\bf Corollary : (Norm Characterization)}: Suppose $\hat{x}$ is a minimizer of 
  \[
@@ -20,7 +20,7 @@ For the lemmas stated below, we consider $f$ to be a submodular function where $
  \]
 
   \item{\bf \lemma (Dual of minimization of submodular functions)}: \[ \underset{X \subset V}{\operatorname{min }}\text{ } f(X) =  \underset{x \in B(f) }{\operatorname{max }}\text{ } x^-(V) = f(V) - \underset{x \in B(f) }{\operatorname{min }}\text{ } \|x\| \]
-  As mentioned in Section \ref{sec:notation} $(x^-)_k = min\{x_k,0\} \text{ } \forall k \in V$. If $X \subset V$ and $x \in B(f)$, we have $f(X) \geq x^-(V)$ with equality iff $\{ x < 0 \} \subset X \subset \{ x\leq 0\}$ and $x(X) = f(X)$. \\
+  As mentioned in Section \ref{sec:notation} $(x^-)_k = \min\{x_k,0\} \text{ } \forall k \in V$. If $X \subset V$ and $x \in B(f)$, we have $f(X) \geq x^-(V)$ with equality iff $\{ x < 0 \} \subset X \subset \{ x\leq 0\}$ and $x(X) = f(X)$. \\
   \[
    \underset{X \subset V}{\operatorname{min }}\text{ } f(X) =  \underset{x \in P(f), x\leq 0 }{\operatorname{max }}\text{ } x(V)
   \]
@@ -28,14 +28,14 @@ For the lemmas stated below, we consider $f$ to be a submodular function where $
 
 \end{itemize}
 \subsubsection{Minimum Norm Point Algorithm}
-As an example of Submodular function minimization we present the minimum norm point algorithm. A non combinatorial approach proposed by Fujishige \cite{Fujishige} is based on the norm characterization of the minima of f shown in {\bf Lemma 2.2}. Fujishige uses Wolfe's algorithm \cite{Wolfe} which was developed to minimize the $L_2$ norm of a vector in a convex hull of a finite set of points $P \in \Re^n$. This method maintains the vector $x$ as a convex combination of points $S$ and iterates over the following steps.\\
-\begin{itemize}
- \item {\bf 1}: A new point from $P$ with a norm with respect to $x$ is added to to set $S$.
- \item {\bf 2}: A point with the minimum norm $x$ is computed in the affine hull of $S$.
- \item {\bf 3}: The minimum norm point $x$ is projected onto the convex hull of $S$. 
-\end{itemize}
+As an example of Submodular function minimization we present the minimum norm point algorithm. A non combinatorial approach proposed by Fujishige \cite{Fujishige} is based on the norm characterization of the minima of $f$ shown in {\bf Lemma 2.2}. Fujishige uses Wolfe's algorithm \cite{Wolfe} which was developed to minimize the $L_2$ norm of a vector in a convex hull of a finite set of points $P \in \mathds{R}^n$. This method maintains the vector $x$ as a convex combination of points $S$ and iterates over the following steps:
+\begin{enumerate}
+\item A new point from $P$ with a norm with respect to $x$ is added to to set $S$.
+\item A point with the minimum norm $x$ is computed in the affine hull of $S$.
+\item The minimum norm point $x$ is projected onto the convex hull of $S$. 
+\end{enumerate}
 
-In the case of submodular functions one needs to search through the set of all bases $P$ which is exponential in size. This issue is circumvented by using Edmonds Greedy Algorithm \cite{Edmond}.\\
+In the case of submodular functions, one needs to search through the set of all bases $P$ which is exponential in size. This issue is circumvented by using Edmonds Greedy Algorithm \cite{Edmond}.
 
 \begin{algorithm}[htb]
 \caption{Minimum Norm Point Algorithm}
@@ -52,7 +52,7 @@ $S \leftarrow S \cup \{y'\}$
 \EndIf
 \State {\bf Minimization over affine hull of $S$}: $z \leftarrow  \underset{y}{\operatorname{argmin }}\text{ } {\|y\|_2^2 \text{ where } y\in S}$
 \State {\bf Projection on to convex hull of $S$}: 
-\While{ $z \notin relint(conv(S))$}
+\While{ $z \notin \mathrm{relint}(\mathrm{conv}(S))$}
                \State $z \leftarrow \text{ intersection of } [z,x] \text{ and } S$
 		\State $S \leftarrow \text{ face of $S$ intersected by } [z,x]$
 \EndWhile

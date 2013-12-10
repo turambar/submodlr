@@ -1,14 +1,16 @@
-Formally we can define submodularity as the property of set functions $f:2^V \rightarrow \Re$, which assign each subset $S \subseteq V$ a value $f(S)$. Here $V$ is a finite set called the {\it ground set}. We also assume that $f(\emptyset) = 0$.\\
+We define submodularity as the property of set functions $f:2^V \rightarrow \mathds{R}$, which assign to each subset $S \subseteq V$ a value $f(S)$. Here $V$ is a finite set called the {\bf ground set}. We also assume that $f(\emptyset) = 0$.
 
- {\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
-
+\begin{definitions}
+A set function $f:2^V \rightarrow \mathds{R}$ is called \textbf{submodular} if it satisfies
 \[
  f(X) + f(Y) \geq f(X \cup U) + f(X \cap Y) \text{  } \forall \text{  } X,Y \subseteq V
 \]
+\end{definitions}
 
-In the above definition the function $f$ lends itself to different forms in different application domains. For instance in a Machine Learning context $f$ could be a function that evaluates information of a given set, i.e entropy. Using this notion, we can easily introduce the property of diminishing returns by using an equivalent definition for submodularity.}\\
+The function $f$ lends itself to different forms in different application domains. In a machine learning context $f$ could be a function that evaluates information of a given set, i.e entropy. Using this notion, we can easily introduce the property of diminishing returns by using an equivalent definition for submodularity.
 
-{\bf \definitions} {\it A set function $f:2^V \rightarrow \Re$ is called submodular if it satisfies
+\begin{definitions}
+A set function $f:2^V \rightarrow \mathds{R}$ is called submodular if it satisfies
 
 \[
  X \rightarrow f(X\cup {k}) - f(X) \text{ is non-increasing }
@@ -16,27 +18,30 @@ In the above definition the function $f$ lends itself to different forms in diff
  \[
  f(X \cup {k}) - f(X) \geq f(Y \cup {k}) + f(Y) \text{  } \forall \text{  } X\subset Y \text{  } \forall k \notin X
 \]
+\end{definitions}
 
-Finally, a set function $f$ is called {\bf supermodular} if $-f$ is submodular, and if $f$ is both sub and supermodular then the function is called a {\bf modular function}.}
+Finally, a set function $f$ is called {\bf supermodular} if $-f$ is submodular, and if $f$ is both sub- and supermodular then the function is called a {\bf modular function}.
 
 \subsection{Notation I}
 \label{sec:notation}
-In this section we will introduce some notation that we will consistently maintain through the course of this document, unless specified. The ground set over which the submodular functions are defined will be denoted by $V$ with cardinality $n$. For a vector $x \in \Re^V$ and a subset $Y \subseteq V$ we define $x(Y) = \underset{u \in Y}{\operatorname{\sum }}\text{ } x(u)$. We can naturally extend this definition to capture the positve and negative parts of the vector $x$ as $x^+\in \Re^V$ and $x^-\in \Re^V$, where $x^+(u) = max\{x(u),0\}$ and $x^-(u) = min\{x(u),0\}$. For a submodular function $f$ we define a polyhedral convex set $P(f)$ called the {\it submodular polyhedron}:
+In this section we will introduce some notation that we will consistently maintain through the course of this document, unless specified. The ground set over which the submodular functions are defined will be denoted by $V$ with cardinality $n$. For a vector $x \in \mathds{R}^V$ and a subset $Y \subseteq V$ we define $x(Y) = \underset{u \in Y}{\operatorname{\sum }}\text{ } x(u)$. We can naturally extend this definition to capture the positve and negative parts of the vector $x$ as $x^+\in \mathds{R}^V$ and $x^-\in \mathds{R}^V$, where $x^+(u) = max\{x(u),0\}$ and $x^-(u) = min\{x(u),0\}$. For a submodular function $f$ we define a polyhedral convex set $P(f)$ called the {\bf submodular polyhedron}:\\
 \[
- P(f) = \{ x\in \Re^V \mid x(S) \leq f(S) \text{ }\forall S\subseteq V \}
+ P(f) = \{ x\in \mathds{R}^V \mid x(S) \leq f(S) \text{ }\forall S\subseteq V \}
 \]
-The face of $P(f)$ for which $x(V) = f(V)$ which defines the {\it base polyhedron}:
+
+The face of $P(f)$ for which $x(V) = f(V)$ which defines the {\bf base polyhedron}:\\
 \[
  B(f) = \{ x \in P(f) \mid x(V) = f(V)\}
 \]
-The elements of $B(f)$ as bases of the set $V$ or the polyhedron $P(V)$.
+
+The elements of $B(f)$ are bases of the set $V$ or the polyhedron $P(V)$.
 
 
 \subsection{Properties of Submodular Functions}
 The basic properties of submodular functions are enumerated below. These properties will help us recast many of our optimization objectives as submodular optimization problems.\\
 
 \begin{itemize}
- \item {\bf \lemma (Closedness Properties)}: Submodular functions are closed under non negative linear combinations, i.e if $\{f_1,f_2,...,f_k\}$ are submodular then the function $g(X) = \sum\limits_{i=1}^k\text{ } \alpha_if_i(X) \text{ is submodular }\forall \alpha_i \geq 0$.\\
+ \item {\bf \lemma (Closedness Properties)}: Submodular functions are closed under nonnegative linear combinations, i.e if $\{f_1,f_2,...,f_k\}$ are submodular then the function $g(X) = \sum\limits_{i=1}^k\text{ } \alpha_if_i(X) \text{ is submodular }\forall \alpha_i \geq 0$.\\
  
  {\bf Corollary}: The sum of a modular and submodular function is a submodular function.\\
  
@@ -44,7 +49,7 @@ The basic properties of submodular functions are enumerated below. These propert
  
  {\bf Corollary [Contraction/conditioning]}: If $X \subseteq Y$ and $f$ is submodular, then $g(X) = f(Y\setminus X)$ is submodular. Equivalently if $Y\subset V$, then $X\rightarrow f(X \cup Y) - f(Y)$ is submodular on $V$ and $V\setminus Y$\\
  
- \item {\bf \lemma (Partial Minimization)}: Monotone submodular functions remain submodular under truncation, i.e if $f(X)$ is submodular then $g(X) := min\{f(X),c\}$ for any constant $c$ is submodular.\\
+ \item {\bf \lemma (Partial Minimization)}: Monotone submodular functions remain submodular under truncation, i.e if $f(X)$ is submodular then $g(X) := \min\{f(X),c\}$ for any constant $c$ is submodular.\\
  
  {\bf Note:} This property is not necessarily preserved for max or min for two submodular functions.\\
  
@@ -52,7 +57,7 @@ The basic properties of submodular functions are enumerated below. These propert
  
  \item{\bf \lemma (Lov$\acute{\bf a}$sz Extension)} A function $f$ is submodular function, iff its Lov$\acute{a}$sz Extension $\hat{f}$ is convex, where
  \[
-  \hat{f}(c) = max\{c^Tx \mid x(U) \leq f(U) \text{ } \forall \text{ } U \subseteq V \text{ and } c\in[0,1]^n\}
+  \hat{f}(c) = \max\{c^Tx \mid x(U) \leq f(U) \text{ } \forall \text{ } U \subseteq V \text{ and } c\in[0,1]^n\}
  \]
 
 \end{itemize}
