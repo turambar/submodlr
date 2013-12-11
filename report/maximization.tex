@@ -5,7 +5,7 @@ The solution to the arbritary matroid constraint was shown more recently by Vond
  \[ \text{Then, } \forall Y\subset X \text{ and } \forall Y\supset X \text{ , }f(Y) \leq f(X) \] 
 \end{itemize}
 \subsubsection{Greedy Algorithm for Monotone Submodular Function Maximization with Uniform Matroid Constraints}
-Maximization for arbitary constraints can be achieved using Vondrak's algorithm. In this document we'll focus on the greedy algorithm as it has implications in the online learning domain. {\bf Note:} Maximization can also be formulated using the base polyhedron given we have $f$ and it's lov$\acute{a}$sz extension $\hat{f}$. In this case maximization is equivalent to finding the maximum l1-norm point in the base polyhedron. See \cite{Bach} for more details.
+Maximization for arbitary constraints can be achieved using Vondrak's algorithm. In this document we'll focus on the greedy algorithm as it has implications in the online learning domain. {\bf Note:} Maximization can also be formulated using the base polyhedron given we have $f$ and its lov$\acute{a}$sz extension $\hat{f}$. In this case maximization is equivalent to finding the maximum l1-norm point in the base polyhedron. See \cite{Bach} for more details.
 For monotone submodular maximization subject to uniform matroid constraints, we need to find a set $X^*\subseteq V$ such that
 \[
  X^* = \underset{\|X\| \leq n}{\operatorname{argmax }}\text{ }f(X)
